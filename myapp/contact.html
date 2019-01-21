@@ -3,10 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Contact</title>
+    <link rel="stylesheet" href="styles.css">
   </head>
-  <body style="background-image:url('img/clouds.jpg')">
-<h2>Contact Form</h2>
-<form class="" action="contact.html" method="post">
+<body>
+<header>
+  <h1>Welcome</h1>
+
+</header>
+<div class="content">
+  <h2>Contact Form</h2>
+  <button onclick="alert('Hello World!');">Click me!</button>
+  <div style="background-color:grey;">
+  <form class="" action="contact.html" method="post">
   <label for="lastname">Lastname</label>
   <input id="lastname" type="text" name="lastname" value="" placeholder="Lastname"><br>
   <label for="email">Email</label>
@@ -31,6 +39,14 @@
   <input type="file" name="profilbild" value=""><br/>
   <input type="submit" name="" value="Send"><br>
 </form>
+</div>
+<div style="position:absolute;width:100px; height:100px; background-color:green ; border-radius:50px; border:3px dashed black;"></div>
+<div style="position:relative;z-index:2; width:100px; height:100px; background-color:red ; border-radius:50px; border:3px dashed black;"></div>
+<div style="padding:10px;background-color:grey">
+  <p>Hallo!</p>
+</div>
+</div>
 
-  </body>
+
+</body>
 </html>
