@@ -61,7 +61,7 @@ header {
   padding:2px;
 }
 
-#headerButton {
+.headerButton {
   background-color:light-grey;
   width:50px;
   border:none;
@@ -72,6 +72,22 @@ header {
   padding-top: 100px;
   height: 100%;
   width:100%
+}
+
+#landing {
+  padding-top: 150px;
+  height: 100%;
+  width:100%
+
+}
+
+#landing h1 {
+    color: #00ffff;
+    text-align: center;
+}
+
+#fishbowl {
+  height: 70px;
 }
 
 .centering {

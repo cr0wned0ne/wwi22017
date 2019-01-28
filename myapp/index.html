@@ -10,16 +10,22 @@
   </head>
   <body>
   <header>
-      <img id="logoImg" class="leftHeader" src="img/cat.svg" title="lamiau" alt="">
+      <img id="logoImg" class="leftHeader" src="img/cat.svg" title="lovecat" alt="">
         <a name="top" href="index.html"></a>
       </img>
       <h1 class="leftHeader">LoveCat</h1>
     </div>
 
-    <input class="headerControl" type="password" id="password" placeholder="Password">
-    <input class="headerControl" type="text" id="username" placeholder="Username">
-    <button id="headerButton" class="headerControl" onclick="lamiau.login()">Login</button>
+    <input class="headerControl login" type="password" id="password" placeholder="Password">
+    <input class="headerControl login" type="text" id="username" placeholder="Username">
+    <button id="loginButton" class="headerButton headerControl login" onclick="lovecat.login()">Login</button>
+    <button id="logoutButton" class="headerButton headerControl" onclick="lovecat.logout()">Logout</button>
   </header>
+  <div id="landing">
+    <h1 class="centering">Welcome to LoveCat!</h1>
+    <img id="fishbowl" class="centering" src="img/fish-bowl.svg" alt="">
+  </div>
+
 
   <div id="content">
 
@@ -39,7 +45,7 @@
       <div>Icons made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" 		    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 		    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
   </footer>
   <!-- include external javascript-->
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  <scriptsrc="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
   <script type="text/javascript" src="script.js"></script>

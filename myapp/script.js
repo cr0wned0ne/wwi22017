@@ -1,9 +1,9 @@
-var lamiau = new Object();
+var lovecat = new Object();
 
-lamiau.load = function() {
-  console.log("logged in: " + lamiau.loggedIn)
-  if (!lamiau.loggedIn) {
-    lamiau.hideContent();
+lovecat.load = function() {
+  console.log("logged in: " + lovecat.loggedIn)
+  if (!lovecat.loggedIn) {
+    lovecat.hideContent();
   }
 
   var rawButton = document.getElementById('rawButton');
@@ -12,7 +12,7 @@ lamiau.load = function() {
   });
 
   rawButton.addEventListener('click', function() {
-    lamiau.next();
+    lovecat.next();
   })
 
   var nopeButton = document.getElementById('nopeButton');
@@ -20,25 +20,42 @@ lamiau.load = function() {
     console.log('nope!');
   });
   nopeButton.addEventListener('click', function() {
-    lamiau.next();
+    lovecat.next();
   })
 }
 
 
-lamiau.login = function() {
-  lamiau.username = document.getElementById('username').value;
-  lamiau.password = document.getElementById('password').value;
-  if (lamiau.username && lamiau.password) {
-    lamiau.loggedIn = true;
+lovecat.login = function() {
+  lovecat.username = document.getElementById('username').value;
+  lovecat.password = document.getElementById('password').value;
+  if (lovecat.username && lovecat.password) {
+    lovecat.loggedIn = true;
     this.hideLogin();
     this.showContent();
   }
-
 }
 
-lamiau.hideLogin = function() {
-  if(lamiau.loggedIn) {
-    var headerControls = document.getElementsByClassName('headerControl');
+lovecat.logout = function() {
+  lovecat.hideContent();
+  lovecat.loggedIn = false;
+  lovecat.username = undefined;
+  lovecat.password = undefined;
+  lovecat.showLogin();
+}
+
+lovecat.showLogin = function() {
+  if(!lovecat.loggedIn) {
+    var headerControls = document.getElementsByClassName('login');
+    for (var i = 0; i < headerControls.length; i++) {
+      ctrl = headerControls[i];
+      ctrl.style.display = 'block';
+    }
+  }
+}
+
+lovecat.hideLogin = function() {
+  if(lovecat.loggedIn) {
+    var headerControls = document.getElementsByClassName('login');
     for (var i = 0; i < headerControls.length; i++) {
       ctrl = headerControls[i];
       ctrl.style.display = 'none';
@@ -47,16 +64,30 @@ lamiau.hideLogin = function() {
   }
 }
 
-lamiau.hideContent = function() {
+lovecat.hideContent = function() {
   var content = document.getElementById('content');
   content.style.display = 'none';
-}
-lamiau.showContent = function() {
-  var content = document.getElementById('content');
-  content.style.display = 'block';
+
+  var button = document.getElementById('logoutButton');
+  button.style.display = 'none';
+
+  var landing = document.getElementById('landing');
+  landing.style.display = "block";
+
 }
 
-lamiau.next = function() {
+lovecat.showContent = function() {
+  var content = document.getElementById('content');
+  content.style.display = 'block';
+
+  var content = document.getElementById('logoutButton');
+  content.style.display = 'block';
+
+  var landing = document.getElementById('landing');
+  landing.style.display = "none";
+}
+
+lovecat.next = function() {
   var profileImg = document.getElementById('profileImg');
   var src = profileImg.src;
   var path = src.substring(0, src.lastIndexOf("/") + 1);
@@ -72,17 +103,17 @@ lamiau.next = function() {
 }
 
 
-lamiau.getLocation = function() {
+lovecat.getLocation = function() {
   if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(lamiau.showPosition);
+    navigator.geolocation.getCurrentPosition(lovecat.showPosition);
   } else {
     geoDemo.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
-lamiau.showPosition = function(position) {
+lovecat.showPosition = function(position) {
   document.getElementById('geoDemo').innerHTML = "Latitude: " + position.coords.latitude +
   "<br>Longitude: " + position.coords.longitude;
 }
 
-lamiau.load();
+lovecat.load();
