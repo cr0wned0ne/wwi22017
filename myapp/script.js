@@ -1,101 +1,88 @@
-//alert('Hello from script!');
-var login = function() {
+var lamiau = new Object();
 
-  var username = document.getElementById('username').value;
-  var password = document.getElementById('password').value;
-  console.log("Username:  " + username);
-  console.log("Password: " + password);
-}
-
-var makeBold = function() {
-  var myPara = document.getElementById('oldParagraph');
-  myPara.style.fontWeight = 'normal';
-}
-
-var makeNormal = function() {
-  var myPara = document.getElementById('oldParagraph');
-  myPara.style.fontWeight = 'bold';
-}
-
-var addParagraph = function() {
-  var newPar = document.createElement('p');
-  newPar.innerHTML = 'I was made by Javascript!';
-  document.getElementById('myArticle').appendChild(newPar);
-}
-
-document.getElementById('removeParagraph').onclick = function() {
-  var oldPara = document.getElementById('oldParagraph');
-  document.getElementById('myArticle').removeChild(oldPara);
-}
-
-var addButton  = document.getElementById('addParagraph');
-console.log(addButton);
-addButton.addEventListener('click', function() {alert('click')});
-addButton.addEventListener('click', addParagraph);
-
-
-
-
-var myApp = new Object();
-
-myApp.person = {
-  firstname : 'Peter'
-}
-
-myApp.person.username = 'peter1989';
-
-myApp.course = {id: "wwi22017"};
-
-
-myApp.popup = function(x) {
-  console.log(x);
-}
-
-myApp.changeArticles = function() {
-  var myArticle = document.getElementsByTagName('article');
-  alert(myArticle.length);
-  for (i = 0; i < myArticle.length; i++) {
-
-    var article = myArticle[i];
-    console.log("article" +article)
-    article.innerHTML = "changed by Javascript!";
-    article.style.color = "red";
+lamiau.load = function() {
+  console.log("logged in: " + lamiau.loggedIn)
+  if (!lamiau.loggedIn) {
+    lamiau.hideContent();
   }
 
+  var rawButton = document.getElementById('rawButton');
+  rawButton.addEventListener('click', function() {
+    console.log('raaaaw');
+  });
+
+  rawButton.addEventListener('click', function() {
+    lamiau.next();
+  })
+
+  var nopeButton = document.getElementById('nopeButton');
+  nopeButton.addEventListener('click', function() {
+    console.log('nope!');
+  });
+  nopeButton.addEventListener('click', function() {
+    lamiau.next();
+  })
+}
+
+
+lamiau.login = function() {
+  lamiau.username = document.getElementById('username').value;
+  lamiau.password = document.getElementById('password').value;
+  if (lamiau.username && lamiau.password) {
+    lamiau.loggedIn = true;
+    this.hideLogin();
+    this.showContent();
+  }
 
 }
 
-//myApp.changeArticles();
-
-
-
-myApp.compare = function(x,y) {
-  console.log(typeof x);
-  console.log( x === y);
+lamiau.hideLogin = function() {
+  if(lamiau.loggedIn) {
+    var headerControls = document.getElementsByClassName('headerControl');
+    for (var i = 0; i < headerControls.length; i++) {
+      ctrl = headerControls[i];
+      ctrl.style.display = 'none';
+    }
+    this.showContent();
+  }
 }
 
-myApp.compare(myApp.person, 5);
-
-myApp.myFunction = function(a, b, popup) {
-  popup(a + b);
-  return a + b;
+lamiau.hideContent = function() {
+  var content = document.getElementById('content');
+  content.style.display = 'none';
+}
+lamiau.showContent = function() {
+  var content = document.getElementById('content');
+  content.style.display = 'block';
 }
 
-myApp.myFunction('10',5, myApp.popup);
-
-
-var x = document.getElementById("geoDemo");
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition);
+lamiau.next = function() {
+  var profileImg = document.getElementById('profileImg');
+  var src = profileImg.src;
+  var path = src.substring(0, src.lastIndexOf("/") + 1);
+  var file = src.substring( src.lastIndexOf("/") + 1, src.length);
+  var number = file.substring(0, file.lastIndexOf("."));
+  if (number < 1) {
+    number++;
   } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
+    number = 0;
+  }
+  var newPath = path + number + ".jpg";
+  profileImg.src = newPath;
+}
+
+
+lamiau.getLocation = function() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(lamiau.showPosition);
+  } else {
+    geoDemo.innerHTML = "Geolocation is not supported by this browser.";
   }
 }
 
-function showPosition(position) {
-  x.innerHTML = "Latitude: " + position.coords.latitude +
+lamiau.showPosition = function(position) {
+  document.getElementById('geoDemo').innerHTML = "Latitude: " + position.coords.latitude +
   "<br>Longitude: " + position.coords.longitude;
 }
 
-getLocation();
+lamiau.load();
