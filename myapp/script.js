@@ -6,7 +6,8 @@ lovecat.load = function() {
     lovecat.hideContent();
   }
 
-  var rawButton = document.getElementById('rawButton');
+  rawButton = document.getElementById('rawButton');
+  console.log(rawButton);
   rawButton.addEventListener('click', function() {
     console.log('raaaaw');
   });
@@ -29,9 +30,19 @@ lovecat.login = function() {
   lovecat.username = document.getElementById('username').value;
   lovecat.password = document.getElementById('password').value;
   if (lovecat.username && lovecat.password) {
-    lovecat.loggedIn = true;
-    this.hideLogin();
-    this.showContent();
+	$.post('/lovecat-server/login', {
+		username : lovecat.username,
+		password : lovecat.password
+	}, function(data) {
+		  lovecat.loggedIn = true;
+		  lovecat.hideLogin();
+		  lovecat.showContent();
+	}).fail(function() {
+		alert("Wrong username or password");
+	})
+	  
+	  
+ 
   }
 }
 
