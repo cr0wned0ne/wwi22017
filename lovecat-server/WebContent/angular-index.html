@@ -15,5 +15,14 @@
       <h1 ng-if="validate()">Hello {{yourName}}!</h1>
     </div>
     <div ng-repeat="user in users">{{user}}</div>
+    
+    	<form method="POST">
+		Username
+		<input type="text" ng-model="username" name="username"/>
+		Password
+		<input type="password" name="password"/>
+		<input ng-if="username" type="submit"/>
+	</form>
+    
   </body>
 </html>

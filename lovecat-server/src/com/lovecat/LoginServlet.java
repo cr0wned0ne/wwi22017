@@ -1,6 +1,10 @@
 package com.lovecat;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,14 +33,30 @@ public class LoginServlet extends HttpServlet{
 	}
 
 	private boolean validCredentials(String username, String password) {
-		Map<String, String> users = new HashMap<String, String>();
-		users.put("admin", "admin");
+		Connection con; 
+		Statement statement;
 		
-		if (users.get(username) != null && users.get(username).equals(password)) {
-			return true;
-		} else {
-			return false;
+		try {
+			// Step 1: create a connection:
+			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lovecatdb?useSSL=false", "root", "start123");
+			
+			// Step 2: create a Statement:
+			statement = con.createStatement();
+			
+			//Step 3: execute a SQL Statement:
+			String sql = "select * from users where id = '" + username + "';" ;
+			ResultSet result =  statement.executeQuery(sql);
+			
+			// Step 4: process the result:
+			while(result.next()) {
+				return true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
+
+		return false;
 		
 	}
 }

@@ -41,15 +41,14 @@
 
   </div>
 	
-	<!--  
-	<form action="/lovecat-server/login" method="POST">
+	  
+	<form method="POST">
 		Username
-		<input type="text" name="username"/>
+		<input type="text" ng-model="username" name="username"/>
 		Password
 		<input type="password" name="password"/>
-		<input type="submit"/>
+		<input ng-if="username" type="submit"/>
 	</form>
-	-->
 
   <footer>
       <div>Icons made by <a href="https://www.flaticon.com/authors/becris" title="Becris">Becris</a> from <a href="https://www.flaticon.com/" 		    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 		    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
